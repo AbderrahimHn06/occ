@@ -1,11 +1,11 @@
 :root {
   --bg-color: #121212; /* App background */
-  --sidebar-bg: #1e1e2f; /* Left sidebar */
+  --sidebar-bg: #16181d; /* Left sidebar */
   --chat-bg: #1a1a1a; /* Chat area background */
   --card-bg: #2a2a3a; /* Chat list item */
   --primary-color: #4fc3f7; /* Selected item / button */
   --text-color: #e0e0e0; /* Main text */
-  --text-secondary: #b0b0b0; /* Secondary text / timestamps */
+  --text-secondary: #818898; /* Secondary text / timestamps */
   --border-color: #2c2c3c; /* Divider lines */
   --input-bg: #2a2a3a; /* Input area background */
   --placeholder-color: #7a7a7a; /* Placeholder text */
@@ -25,10 +25,63 @@
   --placeholder-color: #9e9e9e; /* Placeholder text */
 }
 
-body {
+/* ====== Index ====== */
+
+.indexContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
   background-color: var(--bg-color);
-  color: var(--text-color);
-  margin: 0;
-  font-family: Arial, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ====== SideBar ====== */
+
+.sideBarContainer {
+  width: 64px;
+  height: 100vh !important;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.sideBarIcon {
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sideBarIcon:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.activeIcon {
+  color: #2bd4bd;
+  background-color: #2bd4bd22;
+  color: #ffffff;
+}
+
+.profileImageContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.profileImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  position: absolute;
+  bottom: 8px;
 }

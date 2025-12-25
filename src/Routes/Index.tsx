@@ -1,7 +1,8 @@
+import SideBar from "../Components/Layouts/SideBar";
 export default function Index() {
   return (
-    <div>
-      <h1>Index</h1>
+    <div className="indexContainer">
+      <SideBar />
     </div>
   );
 }
