@@ -37,14 +37,30 @@
 
 /* ====== SideBar ====== */
 
+.sideBarContainer,
+.mobileSideBarContainer {
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px !important;
+  display: flex !important;
+}
+
 .sideBarContainer {
   width: 64px;
   height: 100vh !important;
-  background-color: var(--sidebar-bg);
   border-right: 1px solid var(--border-color);
-  padding: 8px !important;
-  display: flex !important;
   flex-direction: column !important;
+}
+
+.mobileSideBarContainer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid var(--border-color);
+  flex-direction: row !important;
+  z-index: 1000;
+  padding-bottom: 60px !important;
 }
 
 .sideBarIcon {
