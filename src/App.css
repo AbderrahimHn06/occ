@@ -1,5 +1,6 @@
 :root {
   --bg-color: #121212; /* App background */
+  --home-bg: #13151a;
   --sidebar-bg: #16181d; /* Left sidebar */
   --chat-bg: #1a1a1a; /* Chat area background */
   --card-bg: #2a2a3a; /* Chat list item */
@@ -66,7 +67,7 @@
 .sideBarIcon {
   width: 48px;
   height: 48px;
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -94,10 +95,44 @@
   justify-content: center;
 }
 .profileImage {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: var(--primary-color);
   position: absolute;
   bottom: 8px;
+}
+
+/* Home */
+
+.homeContainer {
+  height: 100vh;
+  width: 360px;
+  background-color: var(--home-bg);
+  border: 1px solid var(--border-color);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: var(--text-color);
+}
+
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  padding: 12px;
+}
+
+.homeHeader h2 {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.homeHeaderIcon {
+  color: var(--text-color);
+  font-size: 20px;
+}
+
+.homeHeaderDivider {
+  border: 0.5px solid var(--border-color);
 }
