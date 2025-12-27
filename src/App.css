@@ -157,7 +157,7 @@
 /* ====== Home ====== */
 .homeContainer {
   height: 100vh;
-  width: 324px;
+  width: 360px;
   display: flex;
   flex-direction: column;
   background-color: var(--sidebar-bg);

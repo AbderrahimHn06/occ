@@ -66,7 +66,6 @@ export default function SideBar() {
         alignItems="center"
         justifyContent="flex-start"
         sx={{ pt: 2, mb: 3 }}
-        np
       >
         <div className="sideBarIcon activeIcon">
           <AnimatePresence mode="wait">
