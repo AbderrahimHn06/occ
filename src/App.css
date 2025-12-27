@@ -1,8 +1,13 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 :root {
   --bg-color: #0e0f11; /* App background */
   --sidebar-bg: #131416; /* Left sidebar */
   --card-bg: #2a2a3a; /* Chat list item */
-  --primary-color: #4fc3f7; /* Selected item / button */
+  --primary-color: #2eb88a; /* Selected item / button */
+  --yellowGreen: #4fc3f7; /* Online Badge Color*/
+  --gray: #818898; /* Offline Badge Color*/
   --text-color: #e0e0e0; /* Main text */
   --text-secondary: #818898; /* Secondary text / timestamps */
   --border-color: #2c2c3c; /* Divider lines */
@@ -154,6 +159,8 @@
 .homeContainer {
   height: 100vh;
   width: 324px;
+  display: flex;
+  flex-direction: column;
   background-color: var(--sidebar-bg);
   border: 1px solid var(--border-color);
   padding-top: 16px;
@@ -184,6 +191,15 @@
 }
 
 /* ====== Chat Section ====== */
+.inboxContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+/* search bar:  */
 .searchContainer {
   width: 100%;
   height: 64px;
@@ -193,4 +209,177 @@
   align-items: center;
 }
 
-/* search bar:  */
+/* Inbox Section */
+
+.inbox-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 16px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.inbox-card:hover {
+  background-color: rgba(79, 195, 247, 0.1);
+}
+
+/* Avatar */
+.inbox-card__avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.inbox-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  font-size: 18px;
+}
+
+.inbox-card__online-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0; /* bottom-left like the screenshot */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4fc3f7;
+  border: 2px solid var(--card-bg);
+}
+
+/* Content */
+/* InboxCard Container */
+.inboxCard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.inboxCard:hover {
+  background-color: rgba(46, 184, 138, 0.1);
+}
+
+/* Avatar */
+.avatarContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatarImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text-color);
+  font-size: 20px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+}
+
+.onlineBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--input-bg);
+}
+
+.onlineBadge.online {
+  background-color: var(--yellowGreen);
+}
+
+.onlineBadge.offline {
+  background-color: var(--gray);
+}
+
+/* Content Layout */
+.content {
+  flex: 1;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: row; /* row layout to separate main content and rightColumn */
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Header (name + message) */
+.header {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+}
+
+.name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Right Column (timestamp + unread) */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* items spread vertically */
+  align-items: flex-end; /* align items to left */
+  width: 60px; /* fixed width, adjust as needed */
+  margin-left: 12px;
+}
+
+.timeStamp {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.unreadCount {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
