@@ -48,16 +48,16 @@ export default function Inbox() {
     },
   ];
 
+  const filteredCards = inboxCards.filter((card) =>
+    card.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  // Framer Motion Variants
   const cardVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: 50 },
   };
-
-  // ✅ Filtered cards
-  const filteredCards = inboxCards.filter((card) =>
-    card.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
 
   return (
     <div className="inboxContainer">

@@ -6,9 +6,11 @@ import SideBarIconButton from "../Ui/SideBarIconButton";
 import Grid from "@mui/material/Grid";
 import { useMediaQuery } from "@mui/material";
 
+// Redix
+
 export type IconType = {
   isActive: boolean;
-  route: string;
+  page: "inbox" | "contacts" | "profile";
   icon: JSX.Element;
   id: number;
 };
@@ -20,9 +22,9 @@ export default function SideBar() {
   const isMobile = useMediaQuery("(max-width:768px)");
 
   const initialIcons: IconType[] = [
-    { id: 1, isActive: true, route: "/chat", icon: <IoChatbubbleOutline /> },
-    { id: 2, isActive: false, route: "/contacts", icon: <SlPeople /> },
-    { id: 3, isActive: false, route: "/profile", icon: <IoPersonOutline /> },
+    { id: 1, isActive: true, page: "inbox", icon: <IoChatbubbleOutline /> },
+    { id: 2, isActive: false, page: "contacts", icon: <SlPeople /> },
+    { id: 3, isActive: false, page: "profile", icon: <IoPersonOutline /> },
   ];
 
   const [Icons, setIcons] = useState<IconType[]>(initialIcons);
