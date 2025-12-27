@@ -52,3 +52,10 @@ export default function InboxCard({
     </div>
   );
 }
+
+// Todos
+// 1. Changing the type of the last message to be a react node element to be able to pass as a prop the followings:
+//    - text with highlighted words for Unread messages
+//    - ...Typing indicator
+//    - Photo
+// 2. On Enter/Close animation For the the Hole Inbox Component

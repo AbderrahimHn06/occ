@@ -5,8 +5,8 @@
   --bg-color: #0e0f11; /* App background */
   --sidebar-bg: #131416; /* Left sidebar */
   --card-bg: #2a2a3a; /* Chat list item */
-  --primary-color: #2eb88a; /* Selected item / button */
-  --yellowGreen: #4fc3f7; /* Online Badge Color*/
+  --primary-color: #4fc3f7; /* Selected item / button */
+  --yellowGreen: #2eb88a; /* Online Badge Color*/
   --gray: #818898; /* Offline Badge Color*/
   --text-color: #e0e0e0; /* Main text */
   --text-secondary: #818898; /* Secondary text / timestamps */
@@ -371,7 +371,7 @@
 }
 
 .unreadCount {
-  background-color: var(--primary-color);
+  background-color: var(--yellowGreen);
   color: #fff;
   font-size: 12px;
   font-weight: bold;
