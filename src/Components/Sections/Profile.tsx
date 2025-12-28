@@ -175,19 +175,6 @@ export default function Profile() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "12px",
-            padding: "12px 16px",
-            borderRadius: "12px",
-            cursor: "pointer",
-            marginTop: "8px",
-          }}
-          whileHover={{
-            boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
-            backgroundColor: "var(--card-bg)", // uses the same card-bg as ProfileCard
-          }}
         >
           <motion.div
             whileHover={{ scale: 1.15 }}
@@ -201,7 +188,9 @@ export default function Profile() {
           </Typography>
 
           <FormControlLabel
-            control={<Switch checked={theme === "dark"} onChange={toggleTheme} />}
+            control={
+              <Switch checked={theme === "dark"} onChange={toggleTheme} />
+            }
             label={theme === "dark" ? "Dark" : "Light"}
           />
         </motion.div>

@@ -1,93 +1,53 @@
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box; /* Recommended for better layout control */
 }
 
+/* =========================================
+   2. THEME VARIABLES
+   ========================================= */
 :root {
-  --bg-color: #0e0f11; /* App background */
-  --sidebar-bg: #131416; /* Left sidebar */
-  --card-bg: #2a2a3a; /* Chat / Contact list item */
-  --primary-color: #4fc3f7; /* Selected item / button */
-  --yellowGreen: #2eb88a; /* Online Badge Color*/
-  --gray: #818898; /* Offline Badge Color*/
-  --text-color: #e0e0e0; /* Main text */
-  --text-secondary: #818898; /* Secondary text / timestamps */
-  --border-color: #2c2c3c; /* Divider lines */
-  --input-bg: #2a2a3a; /* Input area background */
-  --placeholder-color: #7a7a7a; /* Placeholder text */
-  --card-hover-bg: rgba(79, 195, 247, 0.1); /* Card hover background */
-  --card-hover-border: #2bd4bd; /* Card hover border */
-  --modal-bg: #17191c; /* Modal background */
+  /* Dark Theme (Default) */
+  --bg-color: #0e0f11;
+  --sidebar-bg: #131416;
+  --card-bg: #2a2a3a;
+  --primary-color: #4fc3f7;
+  --yellowGreen: #2eb88a;
+  --gray: #818898;
+  --text-color: #e0e0e0;
+  --text-secondary: #818898;
+  --border-color: #2c2c3c;
+  --input-bg: #2a2a3a;
+  --placeholder-color: #7a7a7a;
+  --card-hover-bg: rgba(79, 195, 247, 0.1);
+  --card-hover-border: #2bd4bd;
+  --modal-bg: #17191c;
 }
 
-/* Dark theme */
 [data-theme="light"] {
-  --bg-color: #f5f5f5; /* App background */
-  --sidebar-bg: #ffffff; /* Left sidebar */
-  --chat-bg: #eaeaea; /* Chat area background */
-  --card-bg: #ffffff; /* Chat / Contact list item */
-  --primary-color: #1976d2; /* Selected item / button */
-  --yellowGreen: #4caf50; /* Online Badge Color */
-  --gray: #9e9e9e; /* Offline Badge Color */
-  --text-color: #212121; /* Main text */
-  --text-secondary: #616161; /* Secondary text / timestamps */
-  --border-color: #e0e0e0; /* Divider lines */
-  --input-bg: #f0f0f0; /* Input area background */
-  --placeholder-color: #9e9e9e; /* Placeholder text */
-  --card-hover-bg: rgba(25, 118, 210, 0.08); /* Card hover background */
-  --card-hover-border: #1976d2; /* Card hover border */
-  --modal-bg: #ffffff; /* Modal background */
+  --bg-color: #f5f5f5;
+  --sidebar-bg: #ffffff;
+  --chat-bg: #eaeaea;
+  --card-bg: #ffffff;
+  --primary-color: #1976d2;
+  --yellowGreen: #4caf50;
+  --gray: #9e9e9e;
+  --text-color: #212121;
+  --text-secondary: #616161;
+  --border-color: #e0e0e0;
+  --input-bg: #f0f0f0;
+  --placeholder-color: #9e9e9e;
+  --card-hover-bg: rgba(25, 118, 210, 0.08);
+  --card-hover-border: #1976d2;
+  --modal-bg: #ffffff;
 }
 
-/* ====== Reusable Components ====== */
-.Input {
-  width: 100%;
-  height: 44px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 12px;
-  gap: 8px;
-
-  background-color: var(--input-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.Input:focus-within {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 8px var(--primary-color);
-}
-
-.InputIcon {
-  font-size: 20px;
-  color: var(--text-secondary);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  pointer-events: none; /* important */
-}
-
-.InputField {
-  width: 100%;
-  height: 100%;
-
-  border: none;
-  outline: none;
-  background: transparent;
-
-  color: var(--text-color);
-  font-size: 15px;
-}
-
-.InputField::placeholder {
-  color: var(--placeholder-color);
-}
-
-/* ====== Index ====== */
+/* =========================================
+   3. MAIN LAYOUT CONTAINERS
+   ========================================= */
 .indexContainer {
   width: 100%;
   height: 100vh;
@@ -96,7 +56,28 @@
   background-color: var(--bg-color);
 }
 
-/* ====== SideBar ====== */
+.homeContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  padding: 16px 0; /* Consolidated vertical padding */
+  color: var(--text-color);
+}
+
+.inboxContainer,
+.contactsContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+/* =========================================
+   4. SIDEBAR
+   ========================================= */
 .sideBarContainer,
 .mobileSideBarContainer {
   background-color: var(--sidebar-bg);
@@ -143,21 +124,20 @@
 }
 
 .activeIcon {
-  color: #2bd4bd;
   background-color: #2bd4bd22;
-  color: #ffffff;
+  color: #2bd4bd; /* Fixed: merged color definitions */
 }
 
+/* Light Theme Sidebar Overrides */
 [data-theme="light"] .sideBarIcon:hover {
-  color: #1976d2; /* primary color */
-  background-color: rgba(25, 118, 210, 0.15); /* slightly stronger */
+  color: #1976d2;
+  background-color: rgba(25, 118, 210, 0.15);
   transform: scale(1.05);
 }
 
-/* Active icon */
 [data-theme="light"] .activeIcon {
   color: #ffffff;
-  background-color: #1976d2; /* full primary color for active */
+  background-color: #1976d2;
 }
 
 .profileImageContainer {
@@ -165,6 +145,7 @@
   align-items: flex-start;
   justify-content: center;
 }
+
 .profileImage {
   width: 40px;
   height: 40px;
@@ -174,23 +155,13 @@
   bottom: 8px;
 }
 
-/* ====== Home ====== */
-.homeContainer {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--sidebar-bg);
-  border: 1px solid var(--border-color);
-  padding-top: 16px;
-  padding-bottom: 16px;
-  color: var(--text-color);
-}
-
+/* =========================================
+   5. HEADER & SEARCH
+   ========================================= */
 .homeHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
   padding: 12px;
 }
 
@@ -208,135 +179,83 @@
   border: 0.5px solid var(--border-color);
 }
 
-/* ====== Chat & Contacts Section ====== */
-.inboxContainer,
-.contactsContainer {
-  width: 100%;
-  flex: 1;
-  display: flex;
-  min-height: 0;
-  flex-direction: column;
-}
-
-/* search bar */
 .searchContainer {
   width: 100%;
   height: 64px;
   padding: 12px;
-
   display: flex;
   align-items: center;
 }
 
-/* ====== Inbox Cards ====== */
-.inboxCard {
+/* =========================================
+   6. INPUT COMPONENTS
+   ========================================= */
+.Input {
+  width: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 0 12px;
+  gap: 8px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-  padding: 12px 16px;
-  background-color: var(--card-bg);
+.Input:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.InputIcon {
+  font-size: 20px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.InputField {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 15px;
+}
+
+.InputField::placeholder {
+  color: var(--placeholder-color);
+}
+
+/* =========================================
+   7. LIST CARDS (Inbox & Contact)
+   ========================================= */
+/* Shared Base Styles */
+.inboxCard,
+.contactCard {
+  display: flex;
+  align-items: center; /* Adjusted alignment */
+  justify-content: space-between;
+  padding: 12px 16px; /* Standardized padding */
   border-radius: 12px;
   cursor: pointer;
+  background-color: transparent;
   transition: background-color 0.2s ease;
 }
 
 .inboxCard:hover {
   background-color: var(--card-hover-bg);
-}
-
-/* Avatar */
-.inbox-card__avatar-container {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.inbox-card__avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #fff;
-  font-size: 18px;
-}
-
-.inbox-card__online-badge {
-  position: absolute;
-  bottom: 0;
-  left: 0; /* bottom-left */
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #4fc3f7;
-  border: 2px solid var(--card-bg);
-}
-
-/* ====== InboxCard & ContactCard ====== */
-.inboxCard,
-.contactCard {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 12px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  background: transparent;
-  transition: background-color 0.2s ease;
-}
-
-.inboxCard:hover {
-  background-color: rgba(46, 184, 138, 0.1);
 }
 
 .contactCard:hover {
   background-color: var(--card-hover-bg);
 }
 
-/* Avatar */
-.avatarContainer {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.avatarImage {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: var(--text-color);
-  font-size: 20px;
-  background-color: var(--input-bg);
-  border: 1px solid var(--border-color);
-}
-
-.onlineBadge {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--input-bg);
-}
-
-.onlineBadge.online {
-  background-color: var(--yellowGreen);
-}
-
-.onlineBadge.offline {
-  background-color: var(--gray);
-}
-
-/* Content Layout */
+/* Inner Layout of Card */
 .content {
   flex: 1;
   margin-left: 12px;
@@ -346,7 +265,6 @@
   overflow: hidden;
 }
 
-/* Header (name + message / phone) */
 .header {
   display: flex;
   flex-direction: column;
@@ -354,6 +272,16 @@
   flex: 1;
 }
 
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 60px;
+  margin-left: 12px;
+}
+
+/* Text Styles */
 .name {
   margin: 0;
   font-size: 16px;
@@ -377,16 +305,6 @@
   gap: 4px;
 }
 
-/* Right Column (timestamp + unread) */
-.rightColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 60px;
-  margin-left: 12px;
-}
-
 .timeStamp {
   font-size: 12px;
   color: var(--text-secondary);
@@ -406,7 +324,72 @@
   text-align: center;
 }
 
-/* ====== Profile Section ====== */
+/* =========================================
+   8. AVATARS & BADGES
+   ========================================= */
+.inbox-card__avatar-container,
+.avatarContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Consolidated Avatar Style */
+.inbox-card__avatar,
+.avatarImage {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.inbox-card__avatar {
+  background-color: var(--text-secondary);
+  color: #fff;
+}
+
+.avatarImage {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* Badges */
+.inbox-card__online-badge,
+.onlineBadge {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.inbox-card__online-badge {
+  bottom: 0;
+  left: 0;
+  background-color: #4fc3f7;
+  border: 2px solid var(--card-bg);
+}
+
+.onlineBadge {
+  bottom: 0;
+  right: 0;
+  border: 2px solid var(--input-bg);
+}
+
+.onlineBadge.online {
+  background-color: var(--yellowGreen);
+}
+.onlineBadge.offline {
+  background-color: var(--gray);
+}
+
+/* =========================================
+   9. PROFILE SECTION
+   ========================================= */
 .profileRoot {
   flex: 1;
   display: flex;
@@ -415,12 +398,11 @@
   color: var(--text-color);
 }
 
-/* Header gradient */
 .profileHeader {
   height: 80px;
+  /* Add gradient here if needed later */
 }
 
-/* Avatar section */
 .profileAvatarSection {
   margin-top: -48px;
   padding: 0 16px;
@@ -459,12 +441,11 @@
   height: 8px;
   border-radius: 50%;
 }
-
 .statusDot.online {
   background-color: var(--yellowGreen);
 }
 
-/* Cards */
+/* Profile Info Cards */
 .profileCards {
   padding: 16px;
   display: flex;
@@ -486,7 +467,6 @@
 .profileCard.clickable {
   cursor: pointer;
 }
-
 .profileCard.clickable:hover {
   background-color: var(--card-hover-bg);
 }
@@ -504,21 +484,30 @@
 .cardContent {
   flex: 1;
 }
-
 .cardLabel {
   font-size: 12px;
   color: var(--text-secondary);
 }
-
 .cardValue {
   font-size: 14px;
 }
-
 .chevron {
   color: var(--text-secondary);
 }
 
-/* Language select */
+/* Settings / Theme Cards */
+.themeCard {
+  background-color: var(--card-hover-bg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Language Selection */
 .languageCard {
   display: flex;
   align-items: center;
@@ -535,14 +524,12 @@
   margin-bottom: 4px;
 }
 
-/* Wrapper for custom select */
 .languageSelectWrapper {
   position: relative;
   width: 100%;
-  margin-top: 4px; /* space between label and button */
+  margin-top: 4px;
 }
 
-/* Button that opens the dropdown */
 .languageSelectButton {
   width: 100%;
   padding: 8px 12px;
@@ -562,10 +549,9 @@
   border-color: var(--primary-color);
 }
 
-/* Dropdown list */
 .dropdownList {
   position: absolute;
-  top: calc(100% + 8px); /* margin between button and list */
+  top: calc(100% + 8px);
   left: 0;
   width: 100%;
   background-color: var(--card-bg);
@@ -579,7 +565,6 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Dropdown items */
 .dropdownList li {
   padding: 8px 12px;
   cursor: pointer;
@@ -590,19 +575,7 @@
   background-color: rgba(79, 195, 247, 0.1);
 }
 
-/* Logout */
-.logoutContainer {
-  padding: 16px;
-}
-
-.logoutButton {
-  height: 44px;
-  border-radius: 16px;
-  color: #ff4d4f !important;
-}
-
-/* ===== Language dropdown ===== */
-
+/* Extra Language Styles (MUI overrides?) */
 .languageSelect {
   margin-top: 6px;
   background-color: var(--input-bg);
@@ -610,18 +583,173 @@
   color: var(--text-color);
 }
 
-/* Each language row */
 .languageItem {
   border-radius: 8px;
   color: var(--text-color);
   font-size: 14px;
 }
 
-/* Hover & selected */
 .languageItem:hover {
   background-color: rgba(79, 195, 247, 0.12);
 }
 
 .languageItem.Mui-selected {
   background-color: rgba(79, 195, 247, 0.18) !important;
+}
+
+.logoutContainer {
+  padding: 16px;
+}
+.logoutButton {
+  height: 44px;
+  border-radius: 16px;
+  color: #ff4d4f !important;
+}
+
+/* =========================================
+   10. MODAL
+   ========================================= */
+.modalWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContainer {
+  width: 360px;
+  max-height: 80vh;
+  background-color: var(--modal-bg);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.modalClose {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modalClose:hover {
+  color: var(--primary-color);
+}
+
+.modalSearch {
+  margin-bottom: 12px;
+}
+
+.modalList {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modalContact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modalContact:hover {
+  background-color: var(--card-hover-bg);
+}
+
+.modalAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.modalContactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContactName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.modalContactPhone {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Modal Form */
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modalForm label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modalCancel {
+  flex: 1;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.modalCancel:hover {
+  background-color: var(--card-hover-bg);
+}
+
+.modalConfirm {
+  flex: 1;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  background-color: #2eb88a;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modalConfirm:hover {
+  opacity: 0.9;
 }
