@@ -16,6 +16,7 @@
   --placeholder-color: #7a7a7a; /* Placeholder text */
   --card-hover-bg: rgba(79, 195, 247, 0.1); /* Card hover background */
   --card-hover-border: #2bd4bd; /* Card hover border */
+  --modal-bg: #17191c; /* Modal background */
 }
 
 /* Dark theme */
@@ -25,11 +26,16 @@
   --chat-bg: #eaeaea; /* Chat area background */
   --card-bg: #ffffff; /* Chat / Contact list item */
   --primary-color: #1976d2; /* Selected item / button */
+  --yellowGreen: #4caf50; /* Online Badge Color */
+  --gray: #9e9e9e; /* Offline Badge Color */
   --text-color: #212121; /* Main text */
   --text-secondary: #616161; /* Secondary text / timestamps */
-  --border-color: #dcdcdc; /* Divider lines */
-  --input-bg: #ffffff; /* Input area background */
+  --border-color: #e0e0e0; /* Divider lines */
+  --input-bg: #f0f0f0; /* Input area background */
   --placeholder-color: #9e9e9e; /* Placeholder text */
+  --card-hover-bg: rgba(25, 118, 210, 0.08); /* Card hover background */
+  --card-hover-border: #1976d2; /* Card hover border */
+  --modal-bg: #ffffff; /* Modal background */
 }
 
 /* ====== Reusable Components ====== */
@@ -142,6 +148,18 @@
   color: #ffffff;
 }
 
+[data-theme="light"] .sideBarIcon:hover {
+  color: #1976d2; /* primary color */
+  background-color: rgba(25, 118, 210, 0.15); /* slightly stronger */
+  transform: scale(1.05);
+}
+
+/* Active icon */
+[data-theme="light"] .activeIcon {
+  color: #ffffff;
+  background-color: #1976d2; /* full primary color for active */
+}
+
 .profileImageContainer {
   display: flex;
   align-items: flex-start;
@@ -159,7 +177,6 @@
 /* ====== Home ====== */
 .homeContainer {
   height: 100vh;
-  width: 360px;
   display: flex;
   flex-direction: column;
   background-color: var(--sidebar-bg);

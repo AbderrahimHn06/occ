@@ -92,6 +92,8 @@ export default function Inbox() {
           filteredCards.map((card) => <InboxCard key={card.name} {...card} />)
         )}
       </Stack>
+
+      {/* Modal for adding a new chat */}
     </div>
   );
 }

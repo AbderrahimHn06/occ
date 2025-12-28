@@ -8,7 +8,7 @@ type ProfileCardProps = {
   label: string;
   value: string;
   clickable?: boolean;
-  delay?: number;
+  delay?: number; // optional delay for stagger
 };
 
 export default function ProfileCard({
@@ -16,13 +16,14 @@ export default function ProfileCard({
   label,
   value,
   clickable = false,
+  delay = 0, // default 0
 }: ProfileCardProps) {
   return (
     <motion.div
-      /* Entry animation */
-      initial={{ opacity: 0, x: 20 }}
+      /* Entry animation: slide from left to right */
+      initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.3, delay }}
       /* Hover animation */
       whileHover={{
         borderColor: "var(--card-hover-border)",

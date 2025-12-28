@@ -1,7 +1,23 @@
-import { Box, Typography, Button, Divider } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Divider,
+  Switch,
+  FormControlLabel,
+} from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogOut, Globe, Phone, Activity, ChevronDown } from "lucide-react";
+import {
+  LogOut,
+  Globe,
+  Phone,
+  Activity,
+  ChevronDown,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "../../Providers/ThemeProvider";
 import ProfileCard from "../Ui/ProfileCard";
 
 // Dummy current user data
@@ -22,14 +38,16 @@ export default function Profile() {
   const [language, setLanguage] = useState(currentUser.language);
   const [open, setOpen] = useState(false);
 
+  const { theme, toggleTheme } = useTheme(); // get current theme & toggle
+
   const toggleDropdown = () => setOpen((prev) => !prev);
 
   return (
     <Box className="profileRoot">
-      {/* ================= Header ================= */}
+      {/* Header */}
       <motion.div className="profileHeader" />
 
-      {/* ================= Avatar & Name ================= */}
+      {/* Avatar & Name */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -48,9 +66,9 @@ export default function Profile() {
         </div>
       </motion.div>
 
-      {/* ================= Cards ================= */}
+      {/* Cards */}
       <Box className="profileCards">
-        {/* ---------------- Phone Card ---------------- */}
+        {/* Phone */}
         <ProfileCard
           icon={
             <motion.div
@@ -65,7 +83,7 @@ export default function Profile() {
           delay={0.1}
         />
 
-        {/* ---------------- Status Card ---------------- */}
+        {/* Status */}
         <ProfileCard
           icon={
             <motion.div
@@ -80,14 +98,13 @@ export default function Profile() {
           delay={0.15}
         />
 
-        {/* ---------------- Language Selector ---------------- */}
+        {/* Language Selector */}
         <motion.div
           className="languageCard"
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
           onClickCapture={(e) => {
-            // If click happens outside the button or list, close dropdown
             const target = e.target as HTMLElement;
             if (!target.closest(".languageSelectWrapper")) {
               setOpen(false);
@@ -110,7 +127,7 @@ export default function Profile() {
               <button
                 className="languageSelectButton"
                 onClick={(e) => {
-                  e.stopPropagation(); // prevent parent onClickCapture
+                  e.stopPropagation();
                   toggleDropdown();
                 }}
               >
@@ -132,7 +149,7 @@ export default function Profile() {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                     className="dropdownList"
-                    onClick={(e) => e.stopPropagation()} // keep list clicks from closing parent
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {languages.map((lang) => (
                       <li
@@ -151,9 +168,46 @@ export default function Profile() {
             </div>
           </div>
         </motion.div>
+
+        {/* Standalone Theme Switch */}
+        <motion.div
+          className="themeCard"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, delay: 0.25 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            padding: "12px 16px",
+            borderRadius: "12px",
+            cursor: "pointer",
+            marginTop: "8px",
+          }}
+          whileHover={{
+            boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+            backgroundColor: "var(--card-bg)", // uses the same card-bg as ProfileCard
+          }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            {theme === "dark" ? <Moon size={18} /> : <Sun size={18} />}
+          </motion.div>
+
+          <Typography className="cardLabel" style={{ flexGrow: 1 }}>
+            Theme
+          </Typography>
+
+          <FormControlLabel
+            control={<Switch checked={theme === "dark"} onChange={toggleTheme} />}
+            label={theme === "dark" ? "Dark" : "Light"}
+          />
+        </motion.div>
       </Box>
 
-      {/* ================= Logout ================= */}
+      {/* Logout */}
       <Divider />
       <motion.div
         initial={{ opacity: 0 }}
