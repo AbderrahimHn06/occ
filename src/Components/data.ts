@@ -37,33 +37,6 @@ export const chats: Chat[] = [
   },
 ];
 
-export const users: User[] = [
-  {
-    id: 1,
-    name: "John Doe",
-    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=John",
-    isOnline: true,
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jane",
-    isOnline: false,
-  },
-  {
-    id: 3,
-    name: "Alice Johnson",
-    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
-    isOnline: true,
-  },
-  {
-    id: 4,
-    name: "Bob Williams",
-    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
-    isOnline: false,
-  },
-];
-
 export const inboxs: inbox[] = [
   {
     id: 1,
@@ -100,5 +73,43 @@ export const inboxs: inbox[] = [
       text: "text",
     },
     unreadMessages: 3,
+  },
+];
+
+export const contacts: User[] = [
+  {
+    id: 1,
+    name: "Michael Brown",
+    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
+    isOnline: false,
+    phoneNumber: "+1234567890",
+  },
+  {
+    id: 2,
+    name: "Sarah Wilson",
+    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+    isOnline: true,
+    phoneNumber: "+1987654321",
+  },
+  {
+    id: 3,
+    name: "David Miller",
+    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    isOnline: true,
+    phoneNumber: "+1122334455",
+  },
+  {
+    id: 4,
+    name: "Lisa Anderson",
+    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
+    isOnline: false,
+    phoneNumber: "+1222333444",
+  },
+  {
+    id: 5,
+    name: "Emma Davis",
+    avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma",
+    isOnline: true,
+    phoneNumber: "+1555666777",
   },
 ];

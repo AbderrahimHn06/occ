@@ -2,7 +2,7 @@ import MyInput from "../Ui/MyInput";
 import type { MyInputProps } from "../Ui/MyInput";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import ContactCard, { type ContactCardProps } from "../Ui/ContactCard";
+import ContactCard from "../Ui/ContactCard";
 
 // MUI
 import { Stack } from "@mui/material";
@@ -10,8 +10,14 @@ import { Stack } from "@mui/material";
 // Framer Motion
 import { motion, AnimatePresence } from "framer-motion";
 
+// Redux
+
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+
 export default function Contacts() {
   const [searchValue, setSearchValue] = useState("");
+  const contacts = useSelector((state: RootState) => state.contacts);
 
   const searchInputProps: MyInputProps = {
     placeholder: "Search contacts...",
@@ -20,31 +26,10 @@ export default function Contacts() {
     dispatch: setSearchValue,
   };
 
-  const contacts: ContactCardProps[] = [
-    {
-      name: "أمي",
-      phone: "+213 555 12 34 56",
-      isOnline: true,
-    },
-    {
-      name: "أم عبد الله",
-      phone: "+213 777 88 99 00",
-    },
-    {
-      name: "هديل",
-      phone: "+213 666 45 78 90",
-      isOnline: true,
-    },
-    {
-      name: "Ahmed",
-      phone: "+213 541 23 67 89",
-    },
-  ];
-
   const filteredContacts = contacts.filter(
     (contact) =>
       contact.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      contact.phone.includes(searchValue)
+      contact.phoneNumber.includes(searchValue)
   );
 
   const cardVariants = {
@@ -64,7 +49,7 @@ export default function Contacts() {
           <AnimatePresence>
             {filteredContacts.map((contact, index) => (
               <motion.div
-                key={contact.phone}
+                key={contact.phoneNumber}
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
@@ -77,7 +62,7 @@ export default function Contacts() {
           </AnimatePresence>
         ) : (
           filteredContacts.map((contact) => (
-            <ContactCard key={contact.phone} {...contact} />
+            <ContactCard key={contact.phoneNumber} {...contact} />
           ))
         )}
       </Stack>

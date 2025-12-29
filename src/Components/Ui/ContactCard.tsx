@@ -1,16 +1,11 @@
-export type ContactCardProps = {
-  avatarUrl?: string; // optional
-  name: string;
-  phone: string;
-  isOnline?: boolean;
-};
+import type { User } from "../types";
 
 export default function ContactCard({
   avatarUrl,
   name,
-  phone,
+  phoneNumber,
   isOnline = false,
-}: ContactCardProps) {
+}: User) {
   const initials = name.charAt(0).toUpperCase();
 
   return (
@@ -36,7 +31,7 @@ export default function ContactCard({
       <div className="content">
         <div className="header">
           <h3 className="name">{name}</h3>
-          <p className="phone">{phone}</p>
+          <p className="phone">{phoneNumber}</p>
         </div>
 
         {/* Right column kept for alignment / future actions */}

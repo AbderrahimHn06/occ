@@ -1,11 +1,11 @@
-import { users } from "../data";
+import { contacts } from "../data";
 
 type ChatHeaderProps = {
   userId: number;
 };
 
 export default function ChatHeader({ userId }: ChatHeaderProps) {
-  const user = users.find((user) => user.id === userId);
+  const user = contacts.find((user) => user.id === userId);
 
   if (!user) return null;
 

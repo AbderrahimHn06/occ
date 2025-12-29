@@ -33,6 +33,7 @@ export type User = {
   name: string;
   avatarUrl?: string;
   isOnline?: boolean;
+  phoneNumber: string;
 };
 
 export type inbox = {
