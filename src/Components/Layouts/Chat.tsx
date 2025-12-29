@@ -19,8 +19,7 @@ export default function Chat() {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState<string | null>(null);
 
-  const chat = useSelector((state: RootState) => state.chat);
-  console.log(chat);
+  const chatData = useSelector((state: RootState) => state.chat);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -35,6 +34,7 @@ export default function Chat() {
         hour: "2-digit",
         minute: "2-digit",
       }),
+      senderId: 0,
     };
 
     dispatch(addMessage(newMessage));
@@ -56,12 +56,13 @@ export default function Chat() {
       handleSend();
     }
   };
+  if (!chatData.currentChat) return;
 
   return (
     <div className="chatRoot">
-      <ChatHeader userId={chat.id} />
+      <ChatHeader userId={chatData.currentChat.id} />
 
-      <ChatMessages messages={chat.messages} />
+      <ChatMessages messages={chatData.currentChat.messages} />
 
       <ChatInput
         message={message}

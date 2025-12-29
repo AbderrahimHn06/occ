@@ -25,7 +25,7 @@ export default function ChatMessages({ messages }: ChatMessagesProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className={`chatBubble ${
-              msg.isMine ? "chatBubbleMine" : "chatBubbleOther"
+              msg.senderId == 0 ? "chatBubbleMine" : "chatBubbleOther"
             }`}
           >
             {msg.image && (

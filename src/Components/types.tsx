@@ -13,6 +13,7 @@ export type Message = {
   text: string;
   image?: string;
   time: string;
+  senderId: number;
 };
 
 export type ChatState = {

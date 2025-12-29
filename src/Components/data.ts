@@ -1,13 +1,15 @@
 import type { Chat, User, inbox } from "./types";
+
 const userId = 0;
+
 export const chats: Chat[] = [
   {
     id: 1,
     userId,
     otherUserId: 1,
     messages: [
-      { id: 1, text: "Hey! How are you?", time: "09:00 AM" },
-      { id: 2, text: "Are we meeting today?", time: "09:05 AM" },
+      { id: 1, text: "Hey! How are you?", time: "09:00 AM", senderId: 0 },
+      { id: 2, text: "Are we meeting today?", time: "09:05 AM", senderId: 1 },
     ],
   },
   {
@@ -15,8 +17,13 @@ export const chats: Chat[] = [
     userId,
     otherUserId: 2,
     messages: [
-      { id: 1, text: "Hello!", time: "10:30 AM" },
-      { id: 2, text: "Don't forget the report.", time: "10:45 AM" },
+      { id: 1, text: "Hello!", time: "10:30 AM", senderId: 2 },
+      {
+        id: 2,
+        text: "Don't forget the report.",
+        time: "10:45 AM",
+        senderId: 0,
+      },
     ],
   },
   {
@@ -24,16 +31,23 @@ export const chats: Chat[] = [
     userId,
     otherUserId: 3,
     messages: [
-      { id: 1, text: "Good morning!", time: "08:15 AM" },
-      { id: 2, text: "Did you see my last email?", time: "08:20 AM" },
+      { id: 1, text: "Good morning!", time: "08:15 AM", senderId: 0 },
+      {
+        id: 2,
+        text: "Did you see my last email?",
+        time: "08:20 AM",
+        senderId: 3,
+      },
     ],
   },
   {
     id: 4,
     userId,
     otherUserId: 4,
-    messages: [{ id: 1, text: "Let's catch up later.", time: "11:00 AM" }],
-    loading: true, // optional field
+    messages: [
+      { id: 1, text: "Let's catch up later.", time: "11:00 AM", senderId: 4 },
+    ],
+    loading: true,
   },
 ];
 

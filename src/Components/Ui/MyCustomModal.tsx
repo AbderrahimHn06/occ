@@ -9,7 +9,7 @@ import { useState } from "react";
 
 // UI
 import MyInput from "../Ui/MyInput";
-import type { User } from "../types";
+import type { Chat, User } from "../types";
 import { IoSearch } from "react-icons/io5";
 
 // Redux
@@ -17,11 +17,12 @@ import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";
 import { addInbox } from "../../store/slices/inboxSlice";
-import { addContact } from "../../store/slices/contactsSlice";
-import { loadChat } from "../../store/slices/chatSlice";
+// import { addContact } from "../../store/slices/contactsSlice";
+import { addChat, loadChat } from "../../store/slices/chatSlice";
 
 // types
 import type { inbox } from "../types";
+import { chats } from "../data";
 export type modalType = "newChat" | "newContact" | undefined;
 
 type CustomModalProps = {
@@ -46,7 +47,7 @@ export default function CustomModal({
       dispatch(loadChat(contactInbox.id));
     } else {
       const newInbox: inbox = {
-        id: inboxs.length,
+        id: inboxs[inboxs.length - 1].id + 1,
         name: contact.name,
         unreadMessages: 2,
         isOnline: true,
@@ -56,9 +57,17 @@ export default function CustomModal({
           text: "how are you",
         },
       };
+      const newChat: Chat = {
+        id: chats[chats.length - 1].id + 1,
+        messages: [],
+        otherUserId: contact.id,
+        userId: 0,
+      };
+
       dispatch(addInbox(newInbox));
-      dispatch(loadChat(contactInbox.id));
+      dispatch(addChat(newChat));
     }
+    handleClose();
   };
 
   const [search, setSearch] = useState("");

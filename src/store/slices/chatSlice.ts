@@ -1,27 +1,49 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { chats } from "../../Components/data";
-
-/* ================= TYPES ================= */
-
+import { chats as chatsData } from "../../Components/data";
 import type { Chat, Message } from "../../Components/types";
 
-/* ================= Consts ================= */
-const initialState: Chat = chats[0];
+type ChatState = {
+  chats: Chat[];
+  currentChat: Chat | null;
+};
 
-/* ================= SLICE ================= */
+const initialState: ChatState = {
+  chats: chatsData,
+  currentChat: chatsData[0] ?? null,
+};
 
 export const chatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
-    addMessage: (state, action: PayloadAction<Message>) => {
-      state.messages.push(action.payload);
+    loadChat: (state, action: PayloadAction<number>) => {
+      const chat = state.chats.find((chat) => chat.id === action.payload);
+      if (chat) {
+        state.currentChat = chat;
+      }
     },
-    loadChat: (_, action: PayloadAction<number>) => {
-      return chats.find((chat) => chat.id === action.payload);
+
+    addMessage: (state, action: PayloadAction<Message>) => {
+      if (!state.currentChat) return;
+      state.currentChat.messages.push(action.payload);
+    },
+
+    addChat: (state, action: PayloadAction<Chat>) => {
+      const existingChat = state.chats.find(
+        (chat) => chat.id === action.payload.id
+      );
+
+      if (existingChat) {
+        state.currentChat = existingChat;
+        return;
+      }
+
+      state.chats.push(action.payload);
+      state.currentChat = action.payload;
+      loadChat(state.currentChat.id);
     },
   },
 });
 
-export const { addMessage, loadChat } = chatSlice.actions;
+export const { loadChat, addMessage, addChat } = chatSlice.actions;
 export default chatSlice.reducer;
