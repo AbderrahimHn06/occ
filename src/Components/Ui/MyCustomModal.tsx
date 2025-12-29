@@ -13,7 +13,6 @@ import type { Chat, User } from "../types";
 import { IoSearch } from "react-icons/io5";
 
 // Redux
-
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";
 import { addInbox } from "../../store/slices/inboxSlice";
@@ -22,7 +21,7 @@ import { addChat, loadChat } from "../../store/slices/chatSlice";
 
 // types
 import type { inbox } from "../types";
-import { chats } from "../data";
+
 export type modalType = "newChat" | "newContact" | undefined;
 
 type CustomModalProps = {
@@ -36,43 +35,57 @@ export default function CustomModal({
   handleClose,
   type,
 }: CustomModalProps) {
+  const stateChats = useSelector((state: RootState) => state.chat.chats);
   const contacts = useSelector((state: RootState) => state.contacts);
   const inboxs = useSelector((state: RootState) => state.inboxs);
   const dispatch = useDispatch<AppDispatch>();
 
-  // Event Handlers
-  const handleAddInbox = (contact: User) => {
-    const contactInbox = inboxs.find((inbox) => inbox.contactId == contact.id);
-    if (contactInbox != undefined) {
-      dispatch(loadChat(contactInbox.id));
-    } else {
-      const newInbox: inbox = {
-        id: inboxs[inboxs.length - 1].id + 1,
-        name: contact.name,
-        unreadMessages: 2,
-        isOnline: true,
-        contactId: contact.id,
-        lastMessage: {
-          createdAt: "1min Ago",
-          text: "how are you",
-        },
-      };
-      const newChat: Chat = {
-        id: chats[chats.length - 1].id + 1,
-        messages: [],
-        otherUserId: contact.id,
-        userId: 0,
-      };
-
-      dispatch(addInbox(newInbox));
-      dispatch(addChat(newChat));
-    }
-    handleClose();
-  };
-
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+
+  // Event Handlers
+  const handleAddInbox = (contact: User) => {
+    const contactInbox = inboxs.find((i) => i.contactId === contact.id);
+
+    if (contactInbox) {
+      dispatch(loadChat(contactInbox.id));
+      handleClose();
+      return;
+    }
+
+    const newChatInboxId =
+      stateChats.length > 0 ? stateChats[stateChats.length - 1].id + 1 : 1;
+
+    const newInbox: inbox = {
+      id: newChatInboxId,
+      name: contact.name,
+      unreadMessages: 2,
+      isOnline: true,
+      contactId: contact.id,
+      lastMessage: {
+        createdAt: "1min Ago",
+        text: "how are you",
+      },
+    };
+
+    const newChat: Chat = {
+      id: newChatInboxId,
+      messages: [],
+      otherUserId: contact.id,
+      userId: 0,
+    };
+
+    dispatch(addInbox(newInbox));
+    dispatch(addChat(newChat));
+
+    handleClose();
+  };
+
+  // filter contacts by search text
+  const filteredContacts = contacts.filter((c) =>
+    c.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   return (
     <Modal
@@ -110,9 +123,9 @@ export default function CustomModal({
                 </div>
 
                 <div className="modalList">
-                  {contacts.map((contact) => (
+                  {filteredContacts.map((contact) => (
                     <div
-                      key={contact.name}
+                      key={contact.id}
                       className="modalContact"
                       onClick={() => handleAddInbox(contact)}
                     >
@@ -162,7 +175,16 @@ export default function CustomModal({
                   <button className="modalCancel" onClick={handleClose}>
                     Cancel
                   </button>
-                  <button className="modalConfirm">Add Contact</button>
+                  <button
+                    className="modalConfirm"
+                    onClick={() => {
+                      // you can wire up add contact behavior here (dispatch addContact)
+                      // for now we just close the modal
+                      handleClose();
+                    }}
+                  >
+                    Add Contact
+                  </button>
                 </div>
               </Box>
             )}

@@ -25,7 +25,18 @@ export const chatSlice = createSlice({
 
     addMessage: (state, action: PayloadAction<Message>) => {
       if (!state.currentChat) return;
+
+      // Add message to currentChat
       state.currentChat.messages.push(action.payload);
+
+      // Also update the same chat inside chats array
+      const chatIndex = state.chats.findIndex(
+        (chat) => chat.id === state.currentChat!.id
+      );
+
+      if (chatIndex !== -1) {
+        state.chats[chatIndex].messages.push(action.payload);
+      }
     },
 
     addChat: (state, action: PayloadAction<Chat>) => {
@@ -40,7 +51,6 @@ export const chatSlice = createSlice({
 
       state.chats.push(action.payload);
       state.currentChat = action.payload;
-      loadChat(state.currentChat.id);
     },
   },
 });

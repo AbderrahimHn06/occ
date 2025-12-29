@@ -11,16 +11,14 @@ import { addMessage } from "../../store/slices/chatSlice";
 
 /* ================= TYPES ================= */
 import type { Message } from "../types";
-/* ================= MAIN ================= */
 
+/* ================= MAIN ================= */
 export default function Chat() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-
   const [message, setMessage] = useState("");
   const [image, setImage] = useState<string | null>(null);
 
   const chatData = useSelector((state: RootState) => state.chat);
-
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSend = () => {
@@ -56,11 +54,21 @@ export default function Chat() {
       handleSend();
     }
   };
-  if (!chatData.currentChat) return;
+
+  // ================= EMPTY STATE =================
+  if (!chatData.currentChat) {
+    return (
+      <div className="chatEmpty">
+        <div className="emptyIcon">✈️</div>
+        <h3>No messages yet</h3>
+        <p>Send a message to start the conversation</p>
+      </div>
+    );
+  }
 
   return (
     <div className="chatRoot">
-      <ChatHeader userId={chatData.currentChat.id} />
+      <ChatHeader userId={chatData.currentChat.otherUserId} />
 
       <ChatMessages messages={chatData.currentChat.messages} />
 
