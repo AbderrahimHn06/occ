@@ -15,7 +15,7 @@ const inboxSlice = createSlice({
   name: "contactList",
   initialState,
   reducers: {
-    addInbox: (state, action: PayloadAction<User>) => {
+    addContact: (state, action: PayloadAction<User>) => {
       state.push(action.payload);
     },
   },
@@ -23,6 +23,6 @@ const inboxSlice = createSlice({
 
 // Exports
 
-export const { addInbox } = inboxSlice.actions;
+export const { addContact } = inboxSlice.actions;
 
 export default inboxSlice.reducer;

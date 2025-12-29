@@ -9,15 +9,19 @@ import { useState } from "react";
 
 // UI
 import MyInput from "../Ui/MyInput";
-import type { ContactCardProps } from "../Ui/ContactCard";
+import type { User } from "../types";
 import { IoSearch } from "react-icons/io5";
 
 // Redux
 
-// import { UseDispatch } from "react-redux";
-// import { AppDispatch } from "../../store/store";
-// import { addInbox } from "../../store/slices/inboxSlice";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store/store";
+import { addInbox } from "../../store/slices/inboxSlice";
+import { addContact } from "../../store/slices/contactsSlice";
+import { loadChat } from "../../store/slices/chatSlice";
 
+// types
+import type { inbox } from "../types";
 export type modalType = "newChat" | "newContact" | undefined;
 
 type CustomModalProps = {
@@ -26,18 +30,37 @@ type CustomModalProps = {
   type: modalType;
 };
 
-const contacts: ContactCardProps[] = [
-  { name: "Sarah Chen", phone: "+1 555-0123", isOnline: true },
-  { name: "Michael Torres", phone: "+1 555-0456" },
-  { name: "Emily Watson", phone: "+1 555-0789" },
-  { name: "David Kim", phone: "+1 555-0999" },
-];
-
 export default function CustomModal({
   open,
   handleClose,
   type,
 }: CustomModalProps) {
+  const contacts = useSelector((state: RootState) => state.contacts);
+  const inboxs = useSelector((state: RootState) => state.inboxs);
+  const dispatch = useDispatch<AppDispatch>();
+
+  // Event Handlers
+  const handleAddInbox = (contact: User) => {
+    const contactInbox = inboxs.find((inbox) => inbox.contactId == contact.id);
+    if (contactInbox != undefined) {
+      dispatch(loadChat(contactInbox.id));
+    } else {
+      const newInbox: inbox = {
+        id: inboxs.length,
+        name: contact.name,
+        unreadMessages: 2,
+        isOnline: true,
+        contactId: contact.id,
+        lastMessage: {
+          createdAt: "1min Ago",
+          text: "how are you",
+        },
+      };
+      dispatch(addInbox(newInbox));
+      dispatch(loadChat(contactInbox.id));
+    }
+  };
+
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -79,7 +102,11 @@ export default function CustomModal({
 
                 <div className="modalList">
                   {contacts.map((contact) => (
-                    <div key={contact.name} className="modalContact">
+                    <div
+                      key={contact.name}
+                      className="modalContact"
+                      onClick={() => handleAddInbox(contact)}
+                    >
                       <div className="modalAvatar">
                         {contact.name.charAt(0)}
                       </div>
@@ -87,7 +114,7 @@ export default function CustomModal({
                       <div className="modalContactInfo">
                         <p className="modalContactName">{contact.name}</p>
                         <span className="modalContactPhone">
-                          {contact.phone}
+                          {contact.phoneNumber}
                         </span>
                       </div>
                     </div>

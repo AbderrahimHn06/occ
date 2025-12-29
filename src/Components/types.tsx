@@ -46,4 +46,5 @@ export type inbox = {
   unreadMessages: number;
   avatarUrl?: string;
   isOnline?: boolean;
+  contactId: number;
 };
