@@ -2,7 +2,8 @@ import MyInput from "../Ui/MyInput";
 import type { MyInputProps } from "../Ui/MyInput";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import InboxCard, { type InboxCardProps } from "../Ui/InboxCard";
+import InboxCard from "../Ui/InboxCard";
+import type { InboxCardProps } from "../types";
 
 // Material UI
 import { Stack } from "@mui/material";
@@ -22,6 +23,7 @@ export default function Inbox() {
 
   const inboxCards: InboxCardProps[] = [
     {
+      id: 1,
       name: "Saved Messages",
       lastMessage: "Hey! How are you?",
       timestamp: "2h ago",
@@ -29,17 +31,20 @@ export default function Inbox() {
       isOnline: true,
     },
     {
+      id: 2,
       name: "أم عبد الله",
       lastMessage: "See you tomorrow.",
       timestamp: "5h ago",
     },
     {
+      id: 3,
       name: "أمي",
       lastMessage: "Let's meet at 6 PM.",
       timestamp: "1d ago",
       isOnline: false,
     },
     {
+      id: 4,
       name: "هديل",
       lastMessage: "Got it, thanks!",
       timestamp: "3d ago",

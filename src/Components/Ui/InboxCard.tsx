@@ -1,24 +1,25 @@
-export type InboxCardProps = {
-  avatarUrl?: string; // optional
-  name: string;
-  lastMessage: string;
-  timestamp: string;
-  unreadCount?: number;
-  isOnline?: boolean;
-};
+import type { InboxCardProps } from "../types";
 
-export default function InboxCard({
-  avatarUrl,
-  name,
-  lastMessage,
-  timestamp,
-  unreadCount = 0,
-  isOnline = false,
-}: InboxCardProps) {
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../store/store";
+import { loadChat } from "../../store/slices/chatSlice";
+
+/* ================= MAIN ================= */
+export default function InboxCard(data: InboxCardProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const {
+    avatarUrl,
+    name,
+    lastMessage,
+    timestamp,
+    unreadCount = 0,
+    isOnline = false,
+    id,
+  } = data;
   const initials = name.charAt(0).toUpperCase();
 
   return (
-    <div className="inboxCard">
+    <div className="inboxCard" onClick={() => dispatch(loadChat(id))}>
       {/* Avatar */}
       <div className="avatarContainer">
         {avatarUrl ? (

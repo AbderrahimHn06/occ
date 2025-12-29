@@ -1,0 +1,36 @@
+export type InboxCardProps = {
+  avatarUrl?: string;
+  name: string;
+  lastMessage: string;
+  timestamp: string;
+  unreadCount?: number;
+  isOnline?: boolean;
+  id: number;
+};
+
+export type Message = {
+  id: number;
+  text: string;
+  image?: string;
+  time: string;
+};
+
+export type ChatState = {
+  messages: Message[];
+  loading?: boolean;
+};
+
+export type Chat = {
+  id: number;
+  userId: number;
+  otherUserId: number;
+  messages: Message[];
+  loading?: boolean;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  avatarUrl?: string;
+  isOnline?: boolean;
+};
