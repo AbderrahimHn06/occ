@@ -3,13 +3,20 @@ import type { MyInputProps } from "../Ui/MyInput";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import InboxCard from "../Ui/InboxCard";
-import type { InboxCardProps } from "../types";
 
 // Material UI
 import { Stack } from "@mui/material";
 
 // Framer Motion imports
 import { motion, AnimatePresence } from "framer-motion";
+
+// Redux
+
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+// import { addInbox } from "../../store/slices/inboxSlice";
+
+// Consts
 
 export default function Inbox() {
   const [searchValue, setSearchValue] = useState("");
@@ -21,39 +28,9 @@ export default function Inbox() {
     dispatch: setSearchValue,
   };
 
-  const inboxCards: InboxCardProps[] = [
-    {
-      id: 1,
-      name: "Saved Messages",
-      lastMessage: "Hey! How are you?",
-      timestamp: "2h ago",
-      unreadCount: 3,
-      isOnline: true,
-    },
-    {
-      id: 2,
-      name: "أم عبد الله",
-      lastMessage: "See you tomorrow.",
-      timestamp: "5h ago",
-    },
-    {
-      id: 3,
-      name: "أمي",
-      lastMessage: "Let's meet at 6 PM.",
-      timestamp: "1d ago",
-      isOnline: false,
-    },
-    {
-      id: 4,
-      name: "هديل",
-      lastMessage: "Got it, thanks!",
-      timestamp: "3d ago",
-      unreadCount: 1,
-      isOnline: true,
-    },
-  ];
+  const inboxList = useSelector((state: RootState) => state.inboxs);
 
-  const filteredCards = inboxCards.filter((card) =>
+  const filteredCards = inboxList.filter((card) =>
     card.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
@@ -97,8 +74,6 @@ export default function Inbox() {
           filteredCards.map((card) => <InboxCard key={card.name} {...card} />)
         )}
       </Stack>
-
-      {/* Modal for adding a new chat */}
     </div>
   );
 }

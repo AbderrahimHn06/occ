@@ -34,3 +34,15 @@ export type User = {
   avatarUrl?: string;
   isOnline?: boolean;
 };
+
+export type inbox = {
+  id: number;
+  name: string;
+  lastMessage: {
+    createdAt: string;
+    text: string | "typing" | "photo";
+  };
+  unreadMessages: number;
+  avatarUrl?: string;
+  isOnline?: boolean;
+};

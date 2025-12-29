@@ -21,8 +21,10 @@ export default function Home() {
 
   const handleChatModalOpen = () =>
     setModal({ open: true, current: "newChat" });
+
   const handleContactsModalOpen = () =>
     setModal({ open: true, current: "newContact" });
+
   const handleClose = () => setModal({ open: false, current: undefined });
 
   const currentPage = useSelector((state: RootState) => state.page);

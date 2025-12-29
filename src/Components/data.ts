@@ -1,4 +1,4 @@
-import type { Chat, User } from "./types";
+import type { Chat, User, inbox } from "./types";
 const userId = 0;
 export const chats: Chat[] = [
   {
@@ -61,5 +61,44 @@ export const users: User[] = [
     name: "Bob Williams",
     avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
     isOnline: false,
+  },
+];
+
+export const inboxs: inbox[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    lastMessage: {
+      createdAt: "2years ago",
+      text: "typing",
+    },
+    unreadMessages: 2,
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    lastMessage: {
+      createdAt: "recently",
+      text: "text",
+    },
+    unreadMessages: 0,
+  },
+  {
+    id: 3,
+    name: "Alice Johnson",
+    lastMessage: {
+      createdAt: "3min",
+      text: "photo",
+    },
+    unreadMessages: 1,
+  },
+  {
+    id: 4,
+    name: "Bob Williams",
+    lastMessage: {
+      createdAt: "2h ago",
+      text: "text",
+    },
+    unreadMessages: 3,
   },
 ];

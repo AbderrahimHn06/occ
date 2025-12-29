@@ -1,21 +1,14 @@
-import type { InboxCardProps } from "../types";
+import type { inbox } from "../types";
 
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../store/store";
 import { loadChat } from "../../store/slices/chatSlice";
 
 /* ================= MAIN ================= */
-export default function InboxCard(data: InboxCardProps) {
+export default function InboxCard(data: inbox) {
+  const { id, name, lastMessage, avatarUrl, isOnline, unreadMessages } = data;
+
   const dispatch = useDispatch<AppDispatch>();
-  const {
-    avatarUrl,
-    name,
-    lastMessage,
-    timestamp,
-    unreadCount = 0,
-    isOnline = false,
-    id,
-  } = data;
   const initials = name.charAt(0).toUpperCase();
 
   return (
@@ -40,13 +33,13 @@ export default function InboxCard(data: InboxCardProps) {
       <div className="content">
         <div className="header">
           <h3 className="name">{name}</h3>
-          <p className="message">{lastMessage}</p>
+          <p className="message">{lastMessage.text}</p>
         </div>
 
         <div className="rightColumn">
-          <span className="timeStamp">{timestamp}</span>
-          {unreadCount > 0 && (
-            <span className="unreadCount">{unreadCount}</span>
+          <span className="timeStamp">{lastMessage.createdAt}</span>
+          {unreadMessages > 0 && (
+            <span className="unreadCount">{unreadMessages}</span>
           )}
         </div>
       </div>

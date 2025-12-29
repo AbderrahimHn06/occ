@@ -12,6 +12,12 @@ import MyInput from "../Ui/MyInput";
 import type { ContactCardProps } from "../Ui/ContactCard";
 import { IoSearch } from "react-icons/io5";
 
+// Redux
+
+// import { UseDispatch } from "react-redux";
+// import { AppDispatch } from "../../store/store";
+// import { addInbox } from "../../store/slices/inboxSlice";
+
 export type modalType = "newChat" | "newContact" | undefined;
 
 type CustomModalProps = {
