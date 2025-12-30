@@ -66,6 +66,7 @@ export default function CustomModal({
       lastMessage: {
         createdAt: "1min Ago",
         text: "how are you",
+        // here there are two boolean properties which are isTyping or isImage to define the inbox last message what it is.
       },
     };
 

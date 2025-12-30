@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../store/store";
 import { loadChat } from "../../store/slices/chatSlice";
 import { openChat } from "../../store/slices/inboxStatusSlice";
+import Typing from "./Typing";
 
 /* ================= MAIN ================= */
 export default function InboxCard(data: inbox) {
@@ -37,7 +38,11 @@ export default function InboxCard(data: inbox) {
       <div className="content">
         <div className="header">
           <h3 className="name">{name}</h3>
-          <p className="message">{lastMessage.text}</p>
+          {lastMessage.isTyping && <Typing />}
+          {lastMessage.isImage && <p className="messsage">Photo📷</p>}
+          {!lastMessage.isImage && !lastMessage.isTyping && (
+            <p className="message">{lastMessage.text}</p>
+          )}
         </div>
 
         <div className="rightColumn">

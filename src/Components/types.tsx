@@ -36,7 +36,9 @@ export type inbox = {
   name: string;
   lastMessage: {
     createdAt: string;
-    text: string | "typing" | "photo";
+    text: string;
+    isTyping?: boolean;
+    isImage?: boolean;
   };
   unreadMessages: number;
   avatarUrl?: string;
