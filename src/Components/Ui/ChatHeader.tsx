@@ -1,8 +1,9 @@
-import { contacts } from "../data";
 import { IoArrowBack } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeChat } from "../../store/slices/inboxStatusSlice";
 import { deleteChat } from "../../store/slices/chatSlice";
+
+import type { RootState, AppDispatch } from "../../store/store";
 
 type ChatHeaderProps = {
   userId: number;
@@ -10,7 +11,9 @@ type ChatHeaderProps = {
 };
 
 export default function ChatHeader({ userId, isMobile }: ChatHeaderProps) {
-  const dispatch = useDispatch();
+  const contacts = useSelector((state: RootState) => state.contacts);
+  const dispatch = useDispatch<AppDispatch>();
+
   const user = contacts.find((user) => user.id === userId);
 
   if (!user) return null;

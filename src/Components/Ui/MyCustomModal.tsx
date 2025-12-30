@@ -16,11 +16,11 @@ import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store/store";
 import { addInbox } from "../../store/slices/inboxSlice";
-// import { addContact } from "../../store/slices/contactsSlice";
 import { addChat, loadChat } from "../../store/slices/chatSlice";
 
 // types
 import type { inbox } from "../types";
+import { addContact } from "../../store/slices/contactsSlice";
 
 export type modalType = "newChat" | "newContact" | undefined;
 
@@ -80,6 +80,17 @@ export default function CustomModal({
     dispatch(addChat(newChat));
 
     handleClose();
+  };
+
+  const handleAddContact = () => {
+    const newContact: User = {
+      phoneNumber: phone,
+      name: name,
+      id: contacts[contacts.length - 1].id + 1,
+      isOnline: true,
+    };
+
+    dispatch(addContact(newContact));
   };
 
   // filter contacts by search text
@@ -178,8 +189,7 @@ export default function CustomModal({
                   <button
                     className="modalConfirm"
                     onClick={() => {
-                      // you can wire up add contact behavior here (dispatch addContact)
-                      // for now we just close the modal
+                      handleAddContact();
                       handleClose();
                     }}
                   >
