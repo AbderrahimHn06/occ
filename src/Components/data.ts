@@ -86,10 +86,10 @@ export const inboxs: inbox[] = [
   },
   {
     id: 4,
-    name: "أم عبد الله",
+    name: "زكرياء أخي",
     lastMessage: {
       createdAt: "2h ago",
-      text: "وش نديرلك عمري",
+      text: "صل على رسول الله",
     },
     unreadMessages: 3,
     contactId: 4,
@@ -120,7 +120,7 @@ export const contacts: User[] = [
   },
   {
     id: 4,
-    name: "أم عبد الله",
+    name: "زكرياء أخي",
     avatarUrl: "",
     isOnline: false,
     phoneNumber: "+1222333444",
