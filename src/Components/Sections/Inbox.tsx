@@ -14,7 +14,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
-// import { addInbox } from "../../store/slices/inboxSlice";
 
 // Consts
 

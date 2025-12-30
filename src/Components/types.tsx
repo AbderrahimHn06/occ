@@ -1,11 +1,5 @@
-export type InboxCardProps = {
-  avatarUrl?: string;
-  name: string;
-  lastMessage: string;
-  timestamp: string;
-  unreadCount?: number;
-  isOnline?: boolean;
-  id: number;
+export type medaQuery = {
+  isMobile: boolean;
 };
 
 export type Message = {

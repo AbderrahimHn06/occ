@@ -52,8 +52,13 @@ export const chatSlice = createSlice({
       state.chats.push(action.payload);
       state.currentChat = action.payload;
     },
+
+    // 🔴 CLOSE CHAT
+    deleteChat: (state) => {
+      state.currentChat = null;
+    },
   },
 });
 
-export const { loadChat, addMessage, addChat } = chatSlice.actions;
+export const { loadChat, addMessage, addChat, deleteChat } = chatSlice.actions;
 export default chatSlice.reducer;

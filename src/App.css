@@ -773,6 +773,21 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.chatBackButton {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 22px;
+  margin-right: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.chatBackButton:hover {
+  color: var(--primary-color);
+}
+
 .chatUser {
   display: flex;
   align-items: center;
@@ -952,4 +967,8 @@
 .chatEmpty .emptyIcon {
   font-size: 48px;
   color: var(--primary-color);
+}
+
+.chatHidden {
+  display: none;
 }

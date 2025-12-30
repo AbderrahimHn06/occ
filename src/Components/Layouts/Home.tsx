@@ -6,14 +6,14 @@ import Contacts from "../Sections/Contacts";
 import Profile from "../Sections/Profile";
 import { useState } from "react";
 import CustomModal, { type modalType } from "../Ui/MyCustomModal";
-import { useMediaQuery } from "@mui/material";
+
+import type { medaQuery } from "../types";
 
 // Redux toolkit
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 
-export default function Home() {
-  const isMobile = useMediaQuery("(max-width:768px)");
+export default function Home({ isMobile }: medaQuery) {
   const [modal, setModal] = useState<{ open: boolean; current: modalType }>({
     open: false,
     current: undefined,

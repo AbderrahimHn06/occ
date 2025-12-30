@@ -97,37 +97,30 @@ export const inboxs: inbox[] = [
 export const contacts: User[] = [
   {
     id: 1,
-    name: "Michael Brown",
+    name: "أمي",
     avatarUrl: "",
     isOnline: false,
     phoneNumber: "+1234567890",
   },
   {
     id: 2,
-    name: "Sarah Wilson",
+    name: "هديل",
     avatarUrl: "",
     isOnline: true,
     phoneNumber: "+1987654321",
   },
   {
     id: 3,
-    name: "David Miller",
+    name: "حنين",
     avatarUrl: "",
     isOnline: true,
     phoneNumber: "+1122334455",
   },
   {
     id: 4,
-    name: "Lisa Anderson",
+    name: "أم عبد الله",
     avatarUrl: "",
     isOnline: false,
     phoneNumber: "+1222333444",
-  },
-  {
-    id: 5,
-    name: "Emma Davis",
-    avatarUrl: "",
-    isOnline: true,
-    phoneNumber: "+1555666777",
   },
 ];
