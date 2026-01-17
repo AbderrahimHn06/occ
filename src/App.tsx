@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/chat" element={<Index />} />
+        <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
