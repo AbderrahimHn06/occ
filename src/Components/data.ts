@@ -54,7 +54,7 @@ export const chats: Chat[] = [
 export const inboxs: inbox[] = [
   {
     id: 1,
-    name: "أمي",
+    name: "Mohammed",
     lastMessage: {
       createdAt: "2y ago",
       text: "typing",
@@ -65,17 +65,17 @@ export const inboxs: inbox[] = [
   },
   {
     id: 2,
-    name: "هديل",
+    name: "Ali",
     lastMessage: {
       createdAt: "recently",
-      text: "وشبيك دير كيمكا رحيم",
+      text: " what's about react native  ",
     },
     unreadMessages: 0,
     contactId: 2,
   },
   {
     id: 3,
-    name: "حنين",
+    name: "Omar",
     lastMessage: {
       createdAt: "3 min ago",
       text: "photo",
@@ -86,7 +86,7 @@ export const inboxs: inbox[] = [
   },
   {
     id: 4,
-    name: "زكرياء أخي",
+    name: "Teacher",
     lastMessage: {
       createdAt: "2h ago",
       text: "صل على رسول الله",
@@ -99,28 +99,28 @@ export const inboxs: inbox[] = [
 export const contacts: User[] = [
   {
     id: 1,
-    name: "أمي",
+    name: "Mohammed",
     avatarUrl: "",
     isOnline: false,
     phoneNumber: "+1234567890",
   },
   {
     id: 2,
-    name: "هديل",
+    name: "Ali",
     avatarUrl: "",
     isOnline: true,
     phoneNumber: "+1987654321",
   },
   {
     id: 3,
-    name: "حنين",
+    name: "Omar",
     avatarUrl: "",
     isOnline: true,
     phoneNumber: "+1122334455",
   },
   {
     id: 4,
-    name: "زكرياء أخي",
+    name: "Teacher",
     avatarUrl: "",
     isOnline: false,
     phoneNumber: "+1222333444",
